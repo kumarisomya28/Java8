@@ -1,13 +1,87 @@
-Q1)interface FuncInterface{
- void abstractFun(int x);
- default void normalFun(){
-  System.out.println("Hello");
+Q1)Java program to demonstrate lambda expressions to implement a user defined functional interface.
+   interface FuncInterface{
+   void abstractFun(int x);
+    default void normalFun(){
+    System.out.println("Hello");
+    }
+    }
+
+   public class LambdaExpression {
+   public static void main(String[] args) {
+   FuncInterface fobj= (int x) -> System.out.println(2*x);
+   fobj.abstractFun(8);
+     }
+      }
+
+Q2)simple lambda expressions.
+   import java.util.ArrayList;
+
+   class LambdaExpression{
+    public static void main(String[] args) {
+    ArrayList<Integer> arr = new ArrayList<Integer>();
+     arr.add(1);
+     arr.add(2);
+      arr.add(3);
+
+      arr.forEach(n-> System.out.println(n));
+      arr.forEach(n->{if(n%2==0)
+      System.out.println(n);
+     });
+    }
+    }
+
+Q3) Lambda expression with no parameters.
+   interface Test1{
+ void print();
+}
+ class LambdaExpression{
+ static void fun(Test1 t) {t.print();}
+
+  public static void main(String[] args) {
+   fun(() -> System.out.println("Hello"));
+  }
  }
+
+Q4) Lambda expression with a single parameter.
+interface Test2{
+    void print(Integer p);
+}
+class LambdaExpression{
+    static void fun(Test2 t,Integer p){ t.print(p);}
+
+    public static void main(String[] args) {
+        fun(p -> System.out.println(p),10);
+    }
 }
 
-public class LambdaExpression {
- public static void main(String[] args) {
-  FuncInterface fobj= (int x) -> System.out.println(2*x);
-  fobj.abstractFun(8);
- }
-}
+Q5) Lambda expression with multi parameters.
+   interface Test3{
+    void print(Integer p1, Integer p2);
+  }
+   class LambdaExpression{
+    static void fun(Test3 t,Integer p1,Integer p2){
+        t.print(p1,p2);
+    }
+
+    public static void main(String[] args) {
+        fun((p1,p2)-> System.out.println(p1+p2),10,20);
+}}
+
+Q6) Lambda expression with two parameters.
+  interface Test{
+    boolean test(int n , int d);
+  }
+    class LambdaExpression{
+        public static void main(String[] args) {
+            Test isFactor= (n,d) -> (n%d)==0;
+            if(isFactor.test(10,2))
+                System.out.println("is factor");
+            if(!isFactor.test(10,3))
+                System.out.println("is not factor");
+        }
+    }
+
+
+
+
+
