@@ -81,7 +81,60 @@ Q6) Lambda expression with two parameters.
         }
     }
 
+Q7) Sorting ArrayList using Lambda Expression Using lambda expression in place of comparator object for defining our own sorting in collections.
+    import java.util.ArrayList;
+    import java.util.Collections;
 
+     public class LambdaExpression {
+     public static void main(String[] args) {
+       ArrayList<Integer> al = new ArrayList<>();
+       al.add(2);
+       al.add(3);
+       al.add(4);
+       al.add(7);
+       al.add(9);
+      System.out.println(al);
+      Collections.sort(al,((o1, o2) -> (o1>o2) ? -1:(o1<o2)?1:0));
+       System.out.println(al);
+     }
+   }
+
+Q8) Sorting TreeSet using Lambda Expression.
+  public class LambdaExpression {
+ public static void main(String[] args) {
+  TreeSet<Integer> h= new TreeSet<Integer>((o1,o2) -> (o1 > o2) ? -1:(o1 < o2) ? 1:0);
+  h.add(41);
+  h.add(6);
+  h.add(3);
+  h.add(2);
+  System.out.println(h);
+ }
+}
+
+Q9) Sorting elements of TreeMap using Lambda Expression: Sorting will be done on the basis of the keys and not its value. 
+    public class LambdaExpression {
+    public static void main(String[] args) {
+     TreeMap<Integer, String> m= new TreeMap<>((o1, o2) -> (o1 > o2)? -1:(o1<o2)?1:0);
+     m.put(1,"apple");
+    m.put(2,"mango");
+    m.put(3,"litchi");
+     m.put(4,"banana");
+     System.out.println(m);
+   }
+  }
+
+Q10)Reverse comparator via a lambda expression directly in the call to the TreeSet() constructor.
+  public class LambdaExpression {
+   public static void main(String[] args) {
+  TreeSet<String> ts= new TreeSet<>((aStr,bStr)-> bStr.compareTo(aStr));
+  ts.add("A");
+  ts.add("B");
+  ts.add("C");
+  ts.add("D");
+  for(String element : ts)
+   System.out.println(element);
+ }
+} 
 
 
 
