@@ -336,4 +336,47 @@ Q16) Predicate isEqual():
         System.out.println(predicate.test("jdhewif"));
     }
 }
+
+Q17) Supplier Interface in java8.
+  public class FunctionalInterface {
+    public static void main(String[] args) {
+        Supplier<Integer> supplier= ()-> 1;
+        System.out.println(supplier.get());
+    }
+}
+
+Q18) Functional Interface Via apply() method.
+public class FunctionalInterface {
+    public static void main(String[] args) {
+        Function<Integer, Double> half = a-> a/2.0;
+        System.out.println(half.apply(10));
+    }
+}
+
+Q19) addThen() method.
+public class FunctionalInterface {
+    public static void main(String[] args) {
+        Function<Integer, Double> half = a-> a/2.0;
+        half= half.andThen(a->3*a);
+        System.out.println(half.apply(10));
+    }
+}
+
+Q20) compose() method.
+public class FunctionalInterface {
+    public static void main(String[] args) {
+        Function<Integer, Double> half = a-> a/2.0;
+        half= half.compose(a->3*a);
+        System.out.println(half.apply(5));
+    }
+}
+
+Q21) identity() method.
+public class FunctionalInterface {
+    public static void main(String[] args) {
+        Function<Integer,Integer> i = Function.identity();
+        System.out.println(i.apply(10));
+    }
+}
+
     
