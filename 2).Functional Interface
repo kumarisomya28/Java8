@@ -273,3 +273,67 @@ public class Main {
         }
     }
 }
+
+Q11) Print Even using Predicate.
+import java.util.List;
+import java.util.function.Predicate;
+
+public class FunctionalInterface {
+    public static void main(String[] args) {
+        Predicate<Integer> isEven = x-> x%2 ==0;
+        List<Integer> numbers = Arrays.asList(1,2,3,4,5);
+        for(Integer i: numbers){
+            if(isEven.test(i)){
+                System.out.println(i);
+            }
+        }
+    }
+}
+
+Q12) Examples of predicate.
+public class FunctionalInterface {
+    public static void main(String[] args) {
+        Predicate<String> startswithLetterV = x-> x.toLowerCase().charAt(0)=='v';
+        System.out.println(startswithLetterV.test("vipul"));
+    }
+}
+
+Q13) Methods of Predicate :----  and(Predicate other).
+public class FunctionalInterface {
+    public static void main(String[] args) {
+        Predicate<String> startsWithLetterV = x-> x.toLowerCase().charAt(0)=='v';
+        Predicate<String> endsWithLetterL = x-> x.toLowerCase().charAt(x.length()-1)=='l';
+        Predicate<String> and = startsWithLetterV.and(endsWithLetterL);
+        System.out.println(and.test("Vipul"));
+    }
+}
+
+Q14) or(Predicate other).
+public class FunctionalInterface {
+    public static void main(String[] args) {
+        Predicate<String> startsWithLetterV = x-> x.toLowerCase().charAt(0)=='v';
+        Predicate<String> endsWithLetterL = x-> x.toLowerCase().charAt(x.length()-1)=='l';
+        Predicate<String> or = startsWithLetterV.or(endsWithLetterL);
+        System.out.println(or.test("Vipul"));
+    }
+}
+
+Q15)  Predicate negate():
+   public class FunctionalInterface {
+    public static void main(String[] args) {
+        Predicate<String> startsWithLetterV = x-> x.toLowerCase().charAt(0)=='v';
+        Predicate<String> endsWithLetterL = x-> x.toLowerCase().charAt(x.length()-1)=='l';
+        System.out.println(startsWithLetterV.negate().test("vipul"));
+    }
+}
+
+Q16) Predicate isEqual():
+   public class FunctionalInterface {
+    public static void main(String[] args) {
+        Predicate<String> startsWithLetterV = x-> x.toLowerCase().charAt(0)=='v';
+        Predicate<String> endsWithLetterL = x-> x.toLowerCase().charAt(x.length()-1)=='l';
+        Predicate<Object> predicate= Predicate.isEqual("Vipul");
+        System.out.println(predicate.test("jdhewif"));
+    }
+}
+    
