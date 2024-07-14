@@ -46,3 +46,16 @@ public class Student {
 }
 
 Q3) Java program for Converting ArrayList to HashMap using method reference in Java 8 :
+public class LambdaDemo1 {
+    public static void main(String[] args) {
+        ArrayList<String> fruits = new ArrayList<>();
+        fruits.add("Banana");
+        fruits.add("Guava");
+        fruits.add("Pineapple");
+        fruits.add("Apple");
+        System.out.println("Elements in Arraylist are:"+fruits);
+
+        HashMap<String,Integer> res = fruits.stream().collect(Collectors.toMap(Function.identity(),String::length,(e1,e2)-> e1,HashMap::new));
+        System.out.println("Elements in HashMap are:"+ res);
+    }
+}
