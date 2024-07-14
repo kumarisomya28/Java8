@@ -333,3 +333,279 @@ public class LambdaDemo1 {
         System.out.println("Expression reversed is "+ reverse.func("Expression"));
     }
 }
+
+Q18) Converting Arraylist to Hashmap in java 8 using a lambda expression.
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class LambdaDemo1 {
+    private Integer key;
+    private String value;
+
+    public LambdaDemo1(Integer key, String value) {
+        this.key = key;
+        this.value = value;
+    }
+
+    public Integer getKey() {
+        return key;
+    }
+
+    public String getValue() {
+        return value;
+    }
+}
+
+     class Main{
+        public static void main(String[] args) {
+            List<LambdaDemo1> list = new ArrayList<LambdaDemo1>();
+            list.add(new LambdaDemo1(1,"I"));
+            list.add(new LambdaDemo1(2,"Love"));
+            list.add(new LambdaDemo1(3,"myself"));
+
+            Map<Integer,String> map = new HashMap<>();
+            list.forEach((n)-> {map.put(n.getKey(),n.getValue());});
+            System.out.println("Map:" + map);
+        }
+    }
+
+Q19) Check if a String contains only Alphabets in java using Lambda Expression.
+public class LambdaDemo1 {
+    public static boolean isStringOnlyAlphabet(String str){
+        return(
+                (str!=null)&&(!str.equals(" ")) &&(str.chars().allMatch(Character::isLetter)));
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Test case1:");
+        String str1 = "somya";
+        System.out.println("Input:"+str1);
+        System.out.println("output:"+isStringOnlyAlphabet(str1));
+        System.out.println("/n Test case2:");
+        String str2 ="simmi";
+        System.out.println("Input:"+str2);
+        System.out.println("output:"+isStringOnlyAlphabet(str2));
+        System.out.println("/n Test case 3:");
+        String str3=null;
+        System.out.println("Input:"+str3);
+        System.out.println("output:"+isStringOnlyAlphabet(str3));
+        System.out.println("/nTest case 4:");
+        String str4 ="  ";
+        System.out.println("Input:"+str4);
+        System.out.println("output:"+isStringOnlyAlphabet(str4));
+    }
+}
+
+Q20)Remove elements from a List that satisfy given predicate in Java.
+i)Using iterator:
+   Below program demonstrates the removal of null elements from the list, using the Predicate  :
+// Java Program to remove nulls
+// from a List using iterator and Predicate
+import java.util.function.Predicate;
+import java.util.*;
+
+class GFG {
+
+	// Generic function to remove Null Using Iterator
+	public static <T> List<T>
+	removeNullUsingIterator(List<T> l, Predicate<T> p)
+	{
+
+		// Create an iterator from the l
+		Iterator<T> itr = l.iterator();
+
+		// Find and remove all null
+		while (itr.hasNext()) {
+
+			// Fetching the next element
+			T t = itr.next();
+
+			// Checking for Predicate condition
+			if (!p.test(t)) {
+
+				// If the condition matches,
+				// remove that element
+				itr.remove();
+			}
+		}
+
+		// Return the null
+		return l;
+	}
+
+	public static void main(String[] args)
+	{
+
+		// Create the l with null values
+		List<String> l = new ArrayList<>(
+			Arrays.asList("Geeks",
+							null,
+							"forGeeks",
+							null,
+							"A computer portal"));
+
+		// Print the list
+		System.out.println("List with null values: " + l);
+
+		// Creating a Predicate condition checking for null
+		Predicate<String> isNull = item -> Objects.nonNull(item);
+
+		// Removing nulls using iterator and Predicate
+		l = removeNullUsingIterator(l, isNull);
+
+		// Print the list
+		System.out.println("List with null values removed: " + l);
+	}
+}
+ii) Using List.removeAll() :
+ // Java Program to remove 10
+// from a List using List.removeAll() and Predicate
+import java.util.function.Predicate;
+import java.util.*;
+
+class GFG {
+
+	// Generic function to remove elements using Predicate
+	public static <T> List<T>
+	removeElements(List<T> l, Predicate<T> p)
+	{
+
+		// Create collection using Predicate
+		Collection<T> collection = new ArrayList<>();
+
+		for (T t : l) {
+			if (p.test(t)) {
+				collection.add(t);
+			}
+		}
+
+		// Print the list
+		System.out.println("Collection to be removed: " + collection);
+
+		// Removing 10 using List.removeAll()
+		// passing a collection
+		l.removeAll(collection);
+
+		// Return the list
+		return l;
+	}
+
+	public static void main(String[] args)
+	{
+
+		// Create a list with null values
+		List<String> l = new ArrayList<>(
+			Arrays.asList("1", "10", "15", "10", "12", "5", "10", "20"));
+
+		// Print the list 
+		System.out.println("Original List: " + l);
+
+		// Creating a Predicate condition checking for 10
+		Predicate<String> is10 = i -> (i == "10");
+
+		// Removing using Predicate
+		l = removeElements(l, is10);
+
+		// Print the list
+		System.out.println("Updated List: " + l);
+	}
+}
+
+iii)Using Lambdas (Java 8):
+// Java Program to remove nulls
+// from a List using Java 8
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.*;
+
+class GFG {
+
+	// Generic function to remove elements using Predicate
+	public static <T> List<T>
+	removeElements(List<T> l, Predicate<T> p)
+	{
+
+		// Removing nulls using Java Stream
+		// using Predicate condition in lambda expression
+		l = l.stream()
+				.filter(p)
+				.collect(Collectors.toList());
+
+		// Return the list 
+		return l;
+	}
+
+	public static void main(String[] args)
+	{
+
+		// Create a list with null values
+		List<String> l = new ArrayList<>(
+			Arrays.asList("Geeks",
+						null,
+						"forGeeks",
+						null,
+						"A computer portal"));
+
+		// Print the list 
+		System.out.println("List with null values: " + l);
+
+		// Creating a Predicate condition checking for null
+		Predicate<String> isNull = i -> (i != null);
+
+		// Removing using Predicate
+		l = removeElements(l, isNull);
+
+		// Print the list 
+		System.out.println("List with null values removed: " + l);
+	}
+}
+
+iv)Using removeIf() :
+// Java Program to remove nulls
+// from a List using Java 8
+import java.util.function.Predicate;
+import java.util.*;
+
+class GFG {
+
+	// Generic function to remove elements using Predicate
+	public static <T> List<T>
+	removeElements(List<T> l, Predicate<T> p)
+	{
+
+		// Removing nulls using Java Stream
+		// using Predicate condition in removeIf()
+		l.removeIf(x -> p.test(x));
+
+		// Return the list 
+		return l;
+	}
+
+	public static void main(String[] args)
+	{
+
+		// Create a list with null values
+		List<String> l = new ArrayList<>(
+			Arrays.asList("Geeks",
+						null,
+						"forGeeks",
+						null,
+						"A computer portal"));
+
+		// Print the list
+		System.out.println("List with null values: " + l);
+
+		// Creating a Predicate condition checking for null
+		Predicate<String> isNull = i -> (i == null);
+
+		// Removing using Predicate
+		l = removeElements(l, isNull);
+
+		// Print the list
+		System.out.println("List with null values removed: " + l);
+	}
+}
+
+
